@@ -1,0 +1,53 @@
+
+# Open a terminal and type
+conda activate iraf27
+# Then type
+pyraf
+# run following commands to load packages
+stsdas
+hst_calib
+stis
+
+# then cd to the folder where ztf images are stored
+
+cd /home/okc/KiranThesis/Data/ZTF_Sci_images
+
+# Then execute imstat command to get the stats on the images and store it in a text file ztf-image-statistics.txt
+
+imstat ztf_* > ztf-image-statistics.txt
+
+# To display an image on ds9, first open ds9 through another terminal by typing : ds9& 
+# Then run display command in pyraf
+display <image file name> 1
+
+# it will display this image in frame 1 on ds9, to display another image in another frame (frame 2) do the following, 
+#in ds9 dont forget to tile the frames
+#display <image file name> 1
+
+display ztf_20171218131157_000695_zr_c11_o_q1_sciimg.fits 1
+
+# To display pixels[x,y] of an image 
+imhead ztf_20171218131157_000695_zr_c11_o_q1_sciimg.fits
+
+#To view the parameters of a command
+# lpar <command>
+lpar imhead
+
+#To change the parameters of a command
+epar imhead
+
+#To plot histogram of a fits image
+imhistogram ztf_20171218131157_000695_zr_c11_o_q1_sciimg
+
+#To plot WCS on an image in ds9
+wcslab ztf_20171218131157_000695_zr_c11_o_q1_sciimg
+
+#Keep the image opened in DS9 and perform imexamine
+imexamine
+
+#if you hover mouse over the image and press certain keys, you will get different plots
+#pressing 'm' produces stastistics of a region around the cursor and displayed in the terminal
+#pressing 'r' produces radial profile of the star under the cursor, measures center, FWHM etc
+#pressing 'h' produces histogram of a region around the cursor
+#pressing 's' or 'e' produces surface/contour plot
+#pressing 'c' or 'l' produces column/line plot
